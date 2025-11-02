@@ -50,3 +50,20 @@ function reveal(){
   }
 }
      
+// contact form demo handler (client-side only)
+document.addEventListener('DOMContentLoaded', function () {
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      // simple demo: collect values and reset form
+      var name = document.getElementById('name')?.value || '';
+      var email = document.getElementById('email')?.value || '';
+      var message = document.getElementById('message')?.value || '';
+      console.log('Contact form submitted:', { name: name, email: email, message: message });
+      alert('Thank you, ' + (name || 'there') + '! Your message was received (demo).');
+      contactForm.reset();
+    });
+  }
+});
+
