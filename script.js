@@ -155,7 +155,7 @@ window.addEventListener("scroll", () => {
 
   navItems.forEach((item) => {
     item.classList.remove("active");
-    if (item.getAttribute("href").includes(current)) {
+    if (current && item.getAttribute("href") === `#${current}`) {
       item.classList.add("active");
     }
   });
