@@ -632,17 +632,37 @@ header .navigation a.active{
   box-shadow: var(--card-shadow);
 }
 
-.certifications ul li{
-  margin-bottom: 20px;
-  padding-left: 40px;
-  font-size: 1.1em;
-  color: var(--text-gray);
+.cert-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
 }
 
-.certifications ul li::before{
-  content: '🏆';
-  font-size: 1.3em;
-  top: -3px;
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: var(--bg-glass);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid var(--border-glass);
+  transition: 0.3s;
+}
+
+.cert-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--secondary-color);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.cert-item i {
+  font-size: 1.5em;
+  color: var(--secondary-color);
+}
+
+.cert-item span {
+  color: var(--text-gray);
+  font-weight: 500;
 }
 
 .contact .content .row{
@@ -690,6 +710,10 @@ header .navigation a.active{
   color: var(--secondary-color);
 }
 
+.contact .content .row:nth-child(2){
+  display: block;
+}
+
 .contact-form{
   background: var(--card-bg);
   backdrop-filter: blur(15px);
@@ -697,6 +721,8 @@ header .navigation a.active{
   padding: 60px;
   border-radius: 35px;
   box-shadow: var(--card-shadow);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .contact-form h3{
@@ -706,15 +732,29 @@ header .navigation a.active{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 40px;
+  text-align: center;
+}
+
+.input-box{
+  width: 100%;
+  margin-bottom: 25px;
 }
 
 .contact-form input, .contact-form textarea{
+  width: 100%;
   background: rgba(0,0,0,0.05);
   border: 1px solid var(--border-glass);
   color: var(--text-main);
   padding: 18px 25px;
   font-size: 1.1em;
   border-radius: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 150px;
 }
 
 .contact-form input:focus, .contact-form textarea:focus{
@@ -724,9 +764,14 @@ header .navigation a.active{
 }
 
 .contact-form .send-btn{
+  width: 100%;
   background: var(--gradient);
   padding: 18px;
   font-size: 1.1em;
+  font-weight: 700;
+  color: #fff;
+  border: none;
+  cursor: pointer;
   letter-spacing: 2px;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(124, 77, 255, 0.3);
