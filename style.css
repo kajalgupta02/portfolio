@@ -339,10 +339,13 @@ header .navigation a.active{
 .about .img-card{
   position: relative;
   width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1 / 1.1;
   border-radius: 30px;
   padding: 15px;
   background: var(--gradient);
   box-shadow: 0 20px 50px rgba(124, 77, 255, 0.3);
+  margin: 0 auto;
 }
 
 .about .img-card::before {
@@ -354,16 +357,19 @@ header .navigation a.active{
   height: 100px;
   border-top: 10px solid var(--secondary-color);
   border-left: 10px solid var(--secondary-color);
-  z-index: -1;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .about .img-card img{
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   border-radius: 20px;
   filter: grayscale(20%);
   transition: 0.5s;
+  background: var(--bg-section-alt);
 }
 
 .about .img-card:hover img {
@@ -376,19 +382,24 @@ header .navigation a.active{
   font-weight: 800;
   margin-bottom: 25px;
   line-height: 1.2;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .paragraph-text{
   font-size: 1.1em;
   line-height: 1.8;
   color: var(--text-gray);
+  text-align: justify;
 }
 
-.soft-skills{
+.soft-skills {
   margin-top: 40px;
 }
 
-.soft-skills h3{
+.soft-skills h3 {
   font-size: 1.5em;
   margin-bottom: 20px;
   color: var(--secondary-color);
@@ -396,24 +407,39 @@ header .navigation a.active{
   letter-spacing: 1px;
 }
 
-.soft-skills ul{
+.personality-tags {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 15px;
+  margin-top: 25px;
 }
 
-.soft-skills ul li{
+.tag-item {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  padding: 12px 20px;
+  border-radius: 15px;
   display: flex;
   align-items: center;
-  color: var(--text-gray);
-  font-weight: 500;
+  gap: 12px;
+  transition: 0.3s;
 }
 
-.soft-skills ul li::before{
-  content: '✨';
-  margin-right: 12px;
-  font-size: 1.2em;
+.tag-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--secondary-color);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.tag-item i {
+  color: var(--secondary-color);
+  font-size: 1.1em;
+}
+
+.tag-item span {
+  color: var(--text-gray);
+  font-weight: 600;
+  font-size: 0.95em;
 }
 
 .skills{
@@ -421,18 +447,64 @@ header .navigation a.active{
 }
 
 .skills .content{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
 .skill-category{
+  flex: 1 1 350px;
+  max-width: 400px;
   background: var(--card-bg);
   padding: 40px;
   border-radius: 25px;
   transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid var(--border-glass);
   backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.category-header i {
+  font-size: 1.8em;
+  color: var(--primary-color);
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  background: var(--bg-glass);
+  color: var(--text-gray);
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-size: 0.9em;
+  font-weight: 500;
+  border: 1px solid var(--border-glass);
+  transition: 0.3s;
+}
+
+.skill-tag:hover {
+  background: var(--gradient);
+  color: #fff;
+  border-color: transparent;
+  transform: scale(1.05);
+}
+
+.skill-tag.familiar {
+  border-style: dashed;
+  opacity: 0.8;
 }
 
 .skill-category:hover{
@@ -444,16 +516,10 @@ header .navigation a.active{
 
 .skill-category h3{
   color: var(--secondary-color);
-  margin-bottom: 20px;
   font-size: 1.4em;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-
-.skill-category p {
-  color: var(--text-gray);
-  line-height: 1.6;
 }
 
 .experience .content, .education .content{
